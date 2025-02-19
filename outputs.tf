@@ -9,10 +9,6 @@ output "aws_account_id" {
   value = data.aws_caller_identity.current.account_id
 }
 
-output "iam_instance_profile" {
-  description = "IAM Instance Profile name"
-  value       = module.iam.iam_instance_profile
-}
 
 output "iam_instance_profile_ec2" {
   description = "IAM Instance Profile name"

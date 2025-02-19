@@ -20,7 +20,7 @@ unzip awscliv2.zip
 sudo ./aws/install
 aws --version >> /var/log/user-data.log 2>&1
 
-SECRET_NAME="my-test-secret_v8"
+SECRET_NAME="my-test-secret_v9"
 REGION="us-east-1"
 ENV_FILE="/home/ubuntu/.env"
 
