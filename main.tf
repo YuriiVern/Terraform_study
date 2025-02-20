@@ -26,6 +26,7 @@ data "aws_secretsmanager_random_password" "pswd_generator" {
 resource "aws_secretsmanager_secret" "my_secret_terraform" {
   name = var.secret_key
   description = "My secrted container from terraform"
+  recovery_window_in_days = 0
 }
 
 resource "aws_secretsmanager_secret_version" "my_secret_value" {
