@@ -4,9 +4,34 @@
       {
         "Effect": "Allow",
         "Action": [
-          "secretsmanager:GetSecretValue"
+          "secretsmanager:GetSecretValue",
+          "cloudwatch:PutMetricData",
+          "cloudwatch:ListMetrics",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents",
+          "logs:CreateLogGroup",
+          "logs:PutRetentionPolicy"
         ],
         "Resource": "*"
+      },
+      {
+          "Effect": "Allow",
+          "Action": [
+              "ssm:PutParameter",
+              "ssm:GetParameter",
+              "ssm:GetParameters",
+              "ssm:GetParametersByPath"
+          ],
+          "Resource": "arn:aws:ssm:*:*:parameter/*"
+      },
+      {
+          "Effect": "Allow",
+          "Action": [
+              "ec2:DescribeInstances",
+              "ec2:DescribeInstanceStatus",
+              "ec2:DescribeTags"
+          ],
+          "Resource": "*"
       }
     ]
   }
