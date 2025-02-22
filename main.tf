@@ -34,27 +34,27 @@ resource "aws_secretsmanager_secret_version" "my_secret_value" {
   secret_string = data.aws_secretsmanager_random_password.pswd_generator.random_password
 }
 
-resource "aws_iam_role" "ec2_secrets_role" {
+resource "aws_iam_role" "ec2_extended_role" {
 
   name = "EC2SecretsAccessRole"
   assume_role_policy = file("ec2_role.json")
 }
 
-resource "aws_iam_policy" "secrets_manager_policy" {
-  name        = "SecretsManagerReadOnly"
-  description = "Allows EC2 to read secrets from AWS Secrets Manager"
+resource "aws_iam_policy" "extended_policy" {
+  name        = "GeneralPolicyToEc2"
+  description = "Policy to ec2 instance"
 
   policy = file("sm_access_policy.json")
 }
 
 resource "aws_iam_role_policy_attachment" "attach_secrets_policy" {
-  policy_arn = aws_iam_policy.secrets_manager_policy.arn
-  role       = aws_iam_role.ec2_secrets_role.name
+  policy_arn = aws_iam_policy.extended_policy.arn
+  role       = aws_iam_role.ec2_extended_role.name
 }
 
 resource "aws_iam_instance_profile" "ec2_instance_profile" {
-  name = "EC2SecretsInstanceProfile"
-  role = aws_iam_role.ec2_secrets_role.name
+  name = "EC2ExtendedInstanceProfile"
+  role = aws_iam_role.ec2_extended_role.name
 }
 
 module "aws_instance" {
