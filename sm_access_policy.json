@@ -32,6 +32,14 @@
               "ec2:DescribeTags"
           ],
           "Resource": "*"
+      },
+      {
+        "Effect": "Allow",
+        "Action": [
+          "rds:DescribeDBInstances",
+          "rds:ListTagsForResource"
+        ],
+        "Resource": "*"
       }
     ]
   }
